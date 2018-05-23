@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+  <nav>
+    <div class="nav-wrapper purple lighten-1">
+      <div class="col s12">
+        <a class="breadcrumb"><i class="material-icons" style="padding-left:10px">home</i></a>
+        <a class="breadcrumb">Style Transfer with PyTorch</a>
+      </div>
+    </div>
+  </nav>
+
+  <table>
+  <tr>
+  	<!--  -->
+      <!-- add a photo action, need to get the photo uploaded -->
+      <form action="{{url_for('main.main_route')}}" method="POST" enctype=multipart/form-data>
+        <input type="hidden" name="op" value="img_search">
+        <div class="file-field input-field">
+      		<div class="btn blue-grey lighten-1">
+        		<span>Select Photo <i class="material-icons">aspect_ratio</i></span>
+        		<input type="file" name="pic" id="file_input" onchange="readURL(this)";>
+      		</div>
+      		<div class="file-path-wrapper">
+        		<input class="file-path validate" type="text" placeholder="Select The Image You Want To Search With">
+      		</div>
+      		<div style="visibility: hidden" id="image_pic">
+      			<img id="simg" src="#" />
+      		</div>
+    	</div>
+    	<td><input disabled class="btn disabled" style="font-weight:normal" type="submit" value="Search" id="file_submit"><i class="material-icons">not_interested</i></td>
+      </form>
+  </tr>
+
+  </table>
+
+  <script>
+		function readURL(input) {
+	    	if (input.files && input.files[0]) {
+	            var reader = new FileReader();
+	            reader.onload = function (e) {
+	                $('#simg')
+	                    .attr('src', e.target.result)
+	            };
+	            document.getElementById('image_pic').style.visibility = "";
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+  </script>
+{% endblock %}
