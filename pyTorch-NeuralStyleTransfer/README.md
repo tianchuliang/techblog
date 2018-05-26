@@ -6,6 +6,7 @@
 
 ## Math
 (reference: A Neural Algorithm of Artistic Style)
+
 ### Components:
 To put it simply, we want to use the same CNN and extract the content information from image p and the style information from image q and somehow combine them together. 
 
