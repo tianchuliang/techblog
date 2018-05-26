@@ -17,16 +17,29 @@
         <input type="hidden" name="op" value="img_search">
         <div class="file-field input-field">
       		<div class="btn blue-grey lighten-1">
-        		<span>Select Photo <i class="material-icons">aspect_ratio</i></span>
-        		<input type="file" name="pic" id="file_input" onchange="readURL(this)";>
+        		<span>Select Style Photo <i class="material-icons">aspect_ratio</i></span>
+        		<input type="file" name="picStyle" id="file_input" onchange="readURL(this)";>
       		</div>
       		<div class="file-path-wrapper">
-        		<input class="file-path validate" type="text" placeholder="Select The Image You Want To Search With">
+        		<input class="file-path validate" type="text" placeholder="Select the style image">
       		</div>
       		<div style="visibility: hidden" id="image_pic">
       			<img id="simg" src="#" />
       		</div>
-    	</div>
+    	   </div>
+
+        <div class="file-field input-field">
+          <div class="btn blue-grey lighten-1">
+            <span>Select Content Photo <i class="material-icons">aspect_ratio</i></span>
+            <input type="file" name="picContent" id="file_input" onchange="readURL(this)";>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Select the content image">
+          </div>
+          <div style="visibility: hidden" id="image_pic">
+            <img id="simg" src="#" />
+          </div>
+         </div>
     	<td><input disabled class="btn disabled" style="font-weight:normal" type="submit" value="Search" id="file_submit"><i class="material-icons">not_interested</i></td>
       </form>
   </tr>

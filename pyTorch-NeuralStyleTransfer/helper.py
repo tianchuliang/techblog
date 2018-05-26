@@ -16,10 +16,10 @@ import copy
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def image_loader(image_name):
-    imsize = 512 if torch.cuda.is_available() else 128 
+    imsize = (1024,800) if torch.cuda.is_available() else (512,400)  
     loader = transforms.Compose([
-    transforms.Resize(imsize),  # scale imported image
-    transforms.ToTensor()])  # transform it into a torch tensor
+            transforms.Resize(imsize),  # scale imported image
+            transforms.ToTensor()])  # transform it into a torch tensor
     image = Image.open(image_name)
     # fake batch dimension required to fit network's input dimensions
     image = loader(image).unsqueeze(0)
@@ -109,6 +109,7 @@ def get_style_model_and_losses(cnn, normalization_mean, normalization_std,
     model = model[:(i + 1)]
 
     return model, style_losses, content_losses
+
 def get_input_optimizer(input_img):
     # this line to show that input is a parameter that requires a gradient
     optimizer = optim.LBFGS([input_img.requires_grad_()])
