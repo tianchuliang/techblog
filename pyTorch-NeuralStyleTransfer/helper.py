@@ -15,14 +15,18 @@ import copy
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-def image_loader(image_name):
-    imsize = (1024,800) if torch.cuda.is_available() else (512,400)  
+def image_loader(image_name,h=False):
+    imsize = (212,645)
     loader = transforms.Compose([
             transforms.Resize(imsize),  # scale imported image
             transforms.ToTensor()])  # transform it into a torch tensor
+
     image = Image.open(image_name)
     # fake batch dimension required to fit network's input dimensions
-    image = loader(image).unsqueeze(0)
+    image = loader(image)
+    if h:
+        image = image[0:3,:,:]
+    image = image.unsqueeze(0)
     return image.to(device, torch.float)
 
 def imshow(tensor, title=None):
