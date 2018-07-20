@@ -1,2 +1,6 @@
 *.icloud
 */*.icloud
+*.mov
+*.mp4
+*/*.mov
+*/*.mp4
