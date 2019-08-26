@@ -12,22 +12,6 @@ import tensorflow as tf
 from sklearn import ensemble
 from sklearn.preprocessing import OneHotEncoder
 
-
-# In[4]:
-
-
-tf.logging.set_verbosity(tf.logging.ERROR)
-tf.set_random_seed(123)
-
-CATEGORICAL_COLUMNS = ['sex', 
-                       'n_siblings_spouses', 
-                       'parch', 
-                       'class', 
-                       'deck', 
-                       'embark_town', 
-                       'alone']
-NUMERIC_COLUMNS = ['age', 'fare']
-
 def one_hot_cat_column(feature_name, vocab):
   return tf.feature_column.indicator_column(
       tf.feature_column.categorical_column_with_vocabulary_list(feature_name,
@@ -44,6 +28,19 @@ def make_input_fn(X, y, num_examples, n_epochs=None, shuffle=True):
       .batch(num_examples)) 
     return dataset
   return input_fn
+
+tf.logging.set_verbosity(tf.logging.ERROR)
+tf.set_random_seed(123)
+
+CATEGORICAL_COLUMNS = ['sex', 
+                       'n_siblings_spouses', 
+                       'parch', 
+                       'class', 
+                       'deck', 
+                       'embark_town', 
+                       'alone']
+NUMERIC_COLUMNS = ['age', 'fare']
+
 
 
 # In[5]:
