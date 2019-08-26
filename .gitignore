@@ -1,3 +1,5 @@
+gpt-2/models/*
+.DS_Store
 *.icloud
 */*.icloud
 *.mov
