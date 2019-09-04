@@ -33,6 +33,8 @@ def abstract_model_xy(sess, hps, feeds, train_iterator, test_iterator, data_init
     # === Loss and optimizer
     loss_train, stats_train = f_loss(train_iterator, True)
     all_params = tf.trainable_variables()
+    # if gradient_checkpointing enabled through argument parserr
+    # then import pretrained gradients
     if hps.gradient_checkpointing == 1:
         from memory_saving_gradients import gradients
         gs = gradients(loss_train, all_params)
@@ -92,7 +94,9 @@ def codec(hps):
 
     def encoder(z, objective):
         eps = []
+        # for each level
         for i in range(hps.n_levels):
+            # construct 
             z, objective = revnet2d(str(i), z, objective, hps)
             if i < hps.n_levels-1:
                 z, objective, _eps = split2d("pool"+str(i), z, objective=objective)
